@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QT Diary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #inputForm, #searchForm {
+            margin-bottom: 20px;
+        }
+        #dataList {
+            margin-bottom: 20px;
+        }
+        .entry {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .entry span {
+            display: block;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>QT Diary</h1>
+    <div id="toggleButtons">
+        <button onclick="showEntryForm()">Add Entry</button>
+        <button onclick="showEntryList()">View Entries</button>
+    </div>
+    
+    <div id="inputForm">
+        <input type="datetime-local" id="dateTime" placeholder="날짜/시간"><br>
+        <input type="text" id="bibleVerse" placeholder="성경본문"><br>
+        <textarea id="summary" rows="2" cols="50" placeholder="말씀요약"></textarea><br>
+        <input type="text" id="sin" placeholder="죄"><br>
+        <input type="text" id="promise" placeholder="약속"><br>
+        <input type="text" id="example" placeholder="모범"><br>
+        <input type="text" id="command" placeholder="명령"><br>
+        <input type="text" id="knowledge" placeholder="지식"><br>
+        <input type="text" id="conversation" placeholder="대화"><br>
+        <input type="text" id="sharing" placeholder="나눔"><br>
+        <button onclick="saveEntry()">Save</button>
+    </div>
+    
+    <div id="searchForm" style="display:none;">
+        <input type="text" id="searchField" placeholder="Search entries" oninput="searchEntries()">
+    </div>
+
+    <div id="dataList"></div>
+    
+    <div id="actions">
+        <button onclick="exportEntries()">Export</button>
+        <input type="file" id="importFile" onchange="importEntries(event)">
+        <button onclick="clearAllEntries()">Clear All</button>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
